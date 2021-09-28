@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "P:\\GitRepositories\\ProjectApi\\ProjectApi\\ProjectApi.csproj": {}
+    "P:\\GitRepositories\\Webapps\\MVCCoreWebAPI\\ProjectApi\\ProjectApi\\ProjectApi.csproj": {}
   },
   "projects": {
-    "P:\\GitRepositories\\ProjectApi\\ProjectApi\\ProjectApi.csproj": {
+    "P:\\GitRepositories\\Webapps\\MVCCoreWebAPI\\ProjectApi\\ProjectApi\\ProjectApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "P:\\GitRepositories\\ProjectApi\\ProjectApi\\ProjectApi.csproj",
+        "projectUniqueName": "P:\\GitRepositories\\Webapps\\MVCCoreWebAPI\\ProjectApi\\ProjectApi\\ProjectApi.csproj",
         "projectName": "ProjectApi",
-        "projectPath": "P:\\GitRepositories\\ProjectApi\\ProjectApi\\ProjectApi.csproj",
+        "projectPath": "P:\\GitRepositories\\Webapps\\MVCCoreWebAPI\\ProjectApi\\ProjectApi\\ProjectApi.csproj",
         "packagesPath": "C:\\Users\\mnnyh\\.nuget\\packages\\",
-        "outputPath": "P:\\GitRepositories\\ProjectApi\\ProjectApi\\obj\\",
+        "outputPath": "P:\\GitRepositories\\Webapps\\MVCCoreWebAPI\\ProjectApi\\ProjectApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\Microsoft Visual Studio Shared\\NuGetPackages",
@@ -45,6 +45,26 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.18, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
