@@ -1,7 +1,7 @@
 ﻿@model ProjectApi.Models.Match
 
 @{
-    ViewBag.Title = "Add matches";
+    ViewBag.Title = "Add match";
 }
 
 <h1>Index</h1>
@@ -50,7 +50,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Match" asp-action="AllMatches">Back to List</a>
 </div>
 
 @section Scripts {
