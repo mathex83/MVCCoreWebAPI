@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProjectApi.Models;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace ProjectApi.Controllers
@@ -16,7 +18,11 @@ namespace ProjectApi.Controllers
 
 		public IActionResult Index()
 		{
-			//ViewBag.Message = "";
+			return View();
+		}
+
+		public IActionResult Privacy()
+		{
 			return View();
 		}
 
