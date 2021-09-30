@@ -5,7 +5,7 @@
 }
 
 <h1>Index</h1>
-
+@{ var data = ViewBag.Message;}
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -56,4 +56,6 @@
         </tr>
 }
     </tbody>
+    
+    @data
 </table>

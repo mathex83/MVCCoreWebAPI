@@ -9,7 +9,6 @@ P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\bin\Debug\net5.0\r
 P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\bin\Debug\net5.0\SoccerAPI.pdb
 P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\bin\Debug\net5.0\SoccerAPI.Views.dll
 P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\bin\Debug\net5.0\SoccerAPI.Views.pdb
-P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\obj\Debug\net5.0\SoccerAPI.csproj.AssemblyReference.cache
 P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\obj\Debug\net5.0\SoccerAPI.GeneratedMSBuildEditorConfig.editorconfig
 P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\obj\Debug\net5.0\SoccerAPI.AssemblyInfoInputs.cache
 P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\obj\Debug\net5.0\SoccerAPI.AssemblyInfo.cs
@@ -150,3 +149,4 @@ P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\obj\Debug\net5.0\R
 P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\obj\Debug\net5.0\Razor\Views\Fixtures\Details.cshtml.g.cs
 P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\obj\Debug\net5.0\Razor\Views\Fixtures\Edit.cshtml.g.cs
 P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\obj\Debug\net5.0\Razor\Views\Fixtures\Index.cshtml.g.cs
+P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\bin\Debug\net5.0\RestSharp.dll
