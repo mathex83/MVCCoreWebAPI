@@ -1,19 +1,21 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using RestSharp;
+using SoccerAPI.Data;
+using SoccerAPI.Models;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using SoccerAPI.Data;
-using SoccerAPI.Models;
 
 namespace SoccerAPI.Controllers
 {
-    public class FixturesController : Controller
+	public class FixturesController : Controller
     {
         private readonly SoccerAPIContext _context;
         public string baseUrl = "https://soccer.sportmonks.com/api/v2.0";
@@ -26,30 +28,18 @@ namespace SoccerAPI.Controllers
         // GET: Fixtures
         public async Task<IActionResult> Index()
         {
-            List<Fixture> fixtureList = new List<Fixture>();
-            string matchDate = "2021-09-26";
-            using (HttpClient client = new HttpClient())
-            {
-                string apiString = "api_token=2WPKee3pGNARMqtnhznGwIRCHMfIGvtL2xGQuMBrsNGpFZzGJU7xzlsdTo9G!";
-                //Passing service base url
-                client.BaseAddress = new Uri(baseUrl);
-                client.DefaultRequestHeaders.Clear();
-                //Define request data format
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                //Sending request to find web api REST service resource GetAllEmployees using HttpClient
-                HttpResponseMessage Res = await client.GetAsync($"{client.BaseAddress}/fixtures/date/{matchDate}?{apiString}");
-                //Checking the response is successful or not which is sent using HttpClient
-                if (Res.IsSuccessStatusCode)
-                {
-                    //Storing the response details recieved from web api
-                    var fixtureResponse = Res.Content.ReadAsStringAsync().Result;
-                    //Deserializing the response recieved from web api and storing into the Fixture list
-                    fixtureList = JsonConvert.DeserializeObject<List<Fixture>>(fixtureResponse);
-                }
-                //returning the employee list to view
-                return View(fixtureList);
-            }
-            //return View(await _context.Fixture.ToListAsync());
+            List<string> fixtureList = new List<string>();
+            //var definition = new { id = 0, type = "domestic" };
+            string apiString = "api_token=2WPKee3pGNARMqtnhznGwIRCHMfIGvtL2xGQuMBrsNGpFZzGJU7xzlsdTo9G";
+            RestClient client = new RestClient("https://soccer.sportmonks.com/api/v2.0/leagues/501?" + apiString);
+            client.Timeout = -1;
+            RestRequest request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            object dataObject = JObject.Parse(response.Content)["data"].ToObject((typeof(object)));
+            //var deserialized = JsonConvert.DeserializeObject(response.Content);
+
+            ViewBag.Message = dataObject.ToString();
+            return View(await _context.Fixture.ToListAsync());
         }
 
         // GET: Fixtures/Details/5
