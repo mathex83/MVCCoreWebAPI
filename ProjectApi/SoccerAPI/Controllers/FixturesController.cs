@@ -16,6 +16,7 @@ namespace SoccerAPI.Controllers
     public class FixturesController : Controller
     {
         private readonly SoccerAPIContext _context;
+        public string baseUrl = "https://soccer.sportmonks.com/api/v2.0";
 
         public FixturesController(SoccerAPIContext context)
         {
@@ -26,27 +27,29 @@ namespace SoccerAPI.Controllers
         public async Task<IActionResult> Index()
         {
             List<Fixture> fixtureList = new List<Fixture>();
-            using (var client = new HttpClient())
+            string matchDate = "2021-09-26";
+            using (HttpClient client = new HttpClient())
             {
+                string apiString = "api_token=2WPKee3pGNARMqtnhznGwIRCHMfIGvtL2xGQuMBrsNGpFZzGJU7xzlsdTo9G!";
                 //Passing service base url
-                client.BaseAddress = new Uri(Baseurl);
+                client.BaseAddress = new Uri(baseUrl);
                 client.DefaultRequestHeaders.Clear();
                 //Define request data format
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //Sending request to find web api REST service resource GetAllEmployees using HttpClient
-                HttpResponseMessage Res = await client.GetAsync("client.BaseAddress/fixtures/date/2021-09-26?{{apiString}}");
+                HttpResponseMessage Res = await client.GetAsync($"{client.BaseAddress}/fixtures/date/{matchDate}?{apiString}");
                 //Checking the response is successful or not which is sent using HttpClient
                 if (Res.IsSuccessStatusCode)
                 {
                     //Storing the response details recieved from web api
-                    var MatchResponse = Res.Content.ReadAsStringAsync().Result;
-                    //Deserializing the response recieved from web api and storing into the Employee list
-                    fixtureList = JsonConvert.DeserializeObject<List<Fixture>>(MatchResponse);
+                    var fixtureResponse = Res.Content.ReadAsStringAsync().Result;
+                    //Deserializing the response recieved from web api and storing into the Fixture list
+                    fixtureList = JsonConvert.DeserializeObject<List<Fixture>>(fixtureResponse);
                 }
                 //returning the employee list to view
                 return View(fixtureList);
             }
-            return View(await _context.Fixture.ToListAsync());
+            //return View(await _context.Fixture.ToListAsync());
         }
 
         // GET: Fixtures/Details/5
@@ -57,7 +60,7 @@ namespace SoccerAPI.Controllers
                 return NotFound();
             }
 
-            var fixture = await _context.Fixture
+            Fixture fixture = await _context.Fixture
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (fixture == null)
             {
@@ -173,10 +176,7 @@ namespace SoccerAPI.Controllers
         {
             return _context.Fixture.Any(e => e.Id == id);
         }
-        string Baseurl = "https://soccer.sportmonks.com/api/v2.0";
-        public async Task<ActionResult> Index()
-        {
-            
-        }
+        
+        
     }
 }
