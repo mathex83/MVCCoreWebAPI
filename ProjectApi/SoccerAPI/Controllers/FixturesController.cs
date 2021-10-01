@@ -27,18 +27,7 @@ namespace SoccerAPI.Controllers
 
         // GET: Fixtures
         public async Task<IActionResult> Index()
-        {
-            List<string> fixtureList = new List<string>();
-            //var definition = new { id = 0, type = "domestic" };
-            string apiString = "api_token=2WPKee3pGNARMqtnhznGwIRCHMfIGvtL2xGQuMBrsNGpFZzGJU7xzlsdTo9G";
-            RestClient client = new RestClient("https://soccer.sportmonks.com/api/v2.0/leagues/501?" + apiString);
-            client.Timeout = -1;
-            RestRequest request = new RestRequest(Method.GET);
-            IRestResponse response = client.Execute(request);
-            object dataObject = JObject.Parse(response.Content)["data"].ToObject((typeof(object)));
-            //var deserialized = JsonConvert.DeserializeObject(response.Content);
-
-            ViewBag.Message = dataObject.ToString();
+        {   
             return View(await _context.Fixture.ToListAsync());
         }
 

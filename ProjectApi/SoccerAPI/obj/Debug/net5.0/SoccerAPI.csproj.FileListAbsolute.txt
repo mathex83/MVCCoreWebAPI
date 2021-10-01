@@ -150,3 +150,5 @@ P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\obj\Debug\net5.0\R
 P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\obj\Debug\net5.0\Razor\Views\Fixtures\Edit.cshtml.g.cs
 P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\obj\Debug\net5.0\Razor\Views\Fixtures\Index.cshtml.g.cs
 P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\bin\Debug\net5.0\RestSharp.dll
+P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\obj\Debug\net5.0\SoccerAPI.csproj.AssemblyReference.cache
+P:\GitRepositories\Webapps\MVCCoreWebAPI\ProjectApi\SoccerAPI\obj\Debug\net5.0\Razor\Views\League\League.cshtml.g.cs
