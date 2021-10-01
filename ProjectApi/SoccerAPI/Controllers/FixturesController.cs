@@ -18,7 +18,6 @@ namespace SoccerAPI.Controllers
 	public class FixturesController : Controller
     {
         private readonly SoccerAPIContext _context;
-        public string baseUrl = "https://soccer.sportmonks.com/api/v2.0";
 
         public FixturesController(SoccerAPIContext context)
         {
@@ -26,9 +25,41 @@ namespace SoccerAPI.Controllers
         }
 
         // GET: Fixtures
-        public async Task<IActionResult> Index()
-        {   
-            return View(await _context.Fixture.ToListAsync());
+        public IActionResult Index()
+        {
+            Api api = new Api();
+            RestClient client = new RestClient(api.BaseAddress + "fixtures/date/2021-09-26?" + api.Key +
+                "&include=localTeam,visitorTeam");
+            client.Timeout = -1;
+            RestRequest request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            JsonFixture[] responseFixtureArray = (JsonFixture[])JObject.Parse(response.Content)["data"].
+                ToObject(typeof(JsonFixture[]));
+            List<Fixture> fixtureList = new List<Fixture>();
+            for (int i = 0; i < responseFixtureArray.Length; i++)
+            {
+                JsonFixture fixture = responseFixtureArray[i];
+                var homeTeamData = fixture.localTeam["data"];
+                var awayTeamData = fixture.visitorTeam["data"];
+                var time = fixture.time["starting_at"]["date_time"];
+                fixtureList.Add(
+                new Fixture
+                {
+                    Id = (int)fixture.id,
+                    HomeTeam = homeTeamData["name"].ToString(),
+                    AwayTeam = awayTeamData["name"].ToString(),
+                    HomeScore = Convert.ToInt32(fixture.scores["localteam_score"]),
+                    AwayScore = Convert.ToInt32(fixture.scores["visitorteam_score"]),
+                    FixtureDateTime = time.ToString()
+                }
+                );
+
+            }
+            
+
+            ViewBag.Message = fixtureList;
+
+            return View();
         }
 
         // GET: Fixtures/Details/5
