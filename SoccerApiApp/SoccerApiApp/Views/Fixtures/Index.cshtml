@@ -1,0 +1,74 @@
+﻿@model IEnumerable<SoccerApiApp.Models.Fixture>
+
+@{
+	ViewBag.Title = "Fixtures";
+}
+
+<h1>@ViewBag.Title</h1>
+<br />
+<p>
+	<a asp-controller="Fixtures" asp-action="GetFixtures">Hent kampe fra API</a>
+</p>
+<form method="post">
+	<table width="100%">
+		<tr>
+			<td><input type="submit" asp-route-week=3 value="Vis kampe for 3 uger siden" /></td>
+			<td><input type="submit" asp-route-week=2 value="Vis kampe for 2 uger siden" /></td>
+			<td><input type="submit" asp-route-week=1 value="Vis kampe for 1 uge siden" /></td>
+			<td><input type="submit" asp-route-week=0 value="Vis kampe denne uge" /></td>
+			<td></td>
+		</tr>
+	</table>
+</form>
+<button asp-controller="Fixtures" asp-action="Index">Nulstil filter</button>
+<br />
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				<a asp-action="Index" asp-route-sortOrder="@ViewData["HomeSortParm"]">@Html.DisplayNameFor(model => model.HomeTeam)</a>
+				@*@Html.DisplayNameFor(model => model.HomeTeam)*@
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.HomeScore)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.AwayScore)
+			</th>
+			<th>
+				<a asp-action="Index" asp-route-sortOrder="@ViewData["AwaySortParm"]">@Html.DisplayNameFor(model => model.AwayTeam)</a>
+				@*@Html.DisplayNameFor(model => model.AwayTeam)*@
+			</th>
+			<th>
+				<a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.FixtureDateTime)</a>
+				@*@Html.DisplayNameFor(model => model.FixtureDateTime)*@
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.HomeTeam)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.HomeScore)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.AwayScore)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.AwayTeam)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.FixtureDateTime)
+				</td>
+				<td>
+					<a asp-action="Details" asp-route-id="@item.Id">Details</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
